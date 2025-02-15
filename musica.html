@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Música</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen p-4">
+    
+    <div class="relative z-10 text-center w-full max-w-md bg-gray-800 p-6 rounded-lg shadow-lg">
+        <h1 class="text-3xl font-bold text-blue-400 mb-4">🎵 Reproductor de Música</h1>
+
+        <!-- Carátula de la canción -->
+        <img id="cover" src="img/default.jpg" class="w-40 h-40 mx-auto rounded-lg shadow-lg mb-4" alt="Carátula">
+
+        <!-- Nombre de la canción -->
+        <h2 id="title" class="text-lg font-semibold">Nombre de la Canción</h2>
+        <p id="artist" class="text-sm text-gray-400">Artista</p>
+
+        <!-- Barra de progreso -->
+        <input type="range" id="progress" class="w-full mt-4" min="0" value="0" step="1">
+
+        <!-- Controles de reproducción -->
+        <div class="flex justify-center gap-4 mt-4">
+            <button id="prev" class="bg-gray-700 px-4 py-2 rounded-full">⏮️</button>
+            <button id="playPause" class="bg-blue-500 px-6 py-2 rounded-full">▶️</button>
+            <button id="next" class="bg-gray-700 px-4 py-2 rounded-full">⏭️</button>
+        </div>
+    </div>
+
+    <script src="js/musicPlayer.js"></script>
+</body>
+</html>
