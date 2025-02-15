@@ -7,15 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const chatMessages = document.getElementById("chat-messages");
 
     const API_KEY = "AIzaSyCd05QDrsj6ldopkKBTZ6SWvyR9hSSStj8";
-
-    const customResponses = {
-                "quién eres": "¡Hola! Soy el chatbot de Alejo, un desarrollador especializado en bots para Discord y desarrollo web.",
-                "qué tecnologías usas": "Trabajo con JavaScript, Node.js, MongoDB, React, etc.",
-                "cómo te contacto": "Puedes contactarme en **Discord:** aleejo723 o en **Telegram:** @fkfue1.",
-                "qué hace el chatbot": "Este chatbot responde preguntas sobre mi trabajo y tiene una integracion con Gemini",
-                "adiós": "¡Hasta luego! 😊",
-            };
-
     
     // Abrir/Cerrar el chatbot
     chatToggle.addEventListener("click", () => {
