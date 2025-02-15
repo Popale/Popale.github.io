@@ -97,14 +97,16 @@ a:hover {
     bottom: 80px;
     right: 20px;
     width: 320px;
-    background-color: rgba(17, 17, 17, 0.9);
+    background-color: rgba(17, 17, 17, 0.95);
     border: 2px solid #00bcd4;
     border-radius: 12px;
     padding: 15px;
-    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
-    transform: translateX(100%); /* Se desliza hacia la izquierda al abrir */
+    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.5);
+    transform: translateX(100%);
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     opacity: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Cuando el chatbot está abierto */
@@ -113,31 +115,40 @@ a:hover {
     opacity: 1;
 }
 
-/* Botón flotante */
-#chat-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+/* Cabecera del chatbot */
+#chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: linear-gradient(45deg, #007bff, #00bcd4);
     color: white;
-    border: none;
-    padding: 14px;
-    border-radius: 50%;
+    padding: 8px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    font-weight: bold;
+}
+
+#close-chat {
+    color: white;
+    font-size: 18px;
     cursor: pointer;
-    font-size: 20px;
-    box-shadow: 0 5px 10px rgba(0, 188, 212, 0.3);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s;
 }
 
-#chat-toggle:hover {
-    transform: scale(1.1);
+#close-chat:hover {
+    transform: scale(1.2);
 }
 
-/* Mensajes en el chat */
+/* Área de mensajes */
 #chat-messages {
+    flex-grow: 1;
     max-height: 250px;
     overflow-y: auto;
-    padding-right: 5px;
+    padding: 10px;
+    background-color: #222;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Personalización del Scrollbar */
@@ -150,29 +161,29 @@ a:hover {
     border-radius: 3px;
 }
 
+/* Mensajes del usuario */
 .user-message {
-    background-color: #4CAF50;
+    background-color: #007bff;
     color: white;
     padding: 8px 12px;
-    border-radius: 10px;
-    margin-bottom: 5px;
+    border-radius: 15px;
     max-width: 70%;
     align-self: flex-end;
     animation: fadeInMessage 0.3s ease-in-out;
 }
 
+/* Mensajes del bot */
 .bot-message {
-    background-color: #007bff;
+    background-color: #444;
     color: white;
     padding: 8px 12px;
-    border-radius: 10px;
-    margin-bottom: 5px;
+    border-radius: 15px;
     max-width: 70%;
     align-self: flex-start;
     animation: fadeInMessage 0.3s ease-in-out;
 }
 
-/* Animación de los mensajes */
+/* Efecto de los mensajes */
 @keyframes fadeInMessage {
     from {
         opacity: 0;
@@ -184,17 +195,37 @@ a:hover {
     }
 }
 
-/* Campo de entrada en el chat */
+/* Mensaje de "Escribiendo..." */
+.typing-indicator {
+    color: #aaa;
+    font-style: italic;
+    padding: 5px 10px;
+    align-self: flex-start;
+    animation: fadeInMessage 0.3s ease-in-out;
+}
+
+/* Contenedor de entrada */
+#chat-input {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background-color: #111;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* Campo de entrada de texto */
 #user-input {
-    width: calc(100% - 60px);
+    flex-grow: 1;
     padding: 8px;
     border-radius: 6px;
     border: none;
     background-color: #222;
     color: white;
+    outline: none;
 }
 
-/* Botón de enviar en el chat */
+/* Botón de enviar */
 #send-btn {
     background: #00bcd4;
     color: white;
@@ -202,21 +233,10 @@ a:hover {
     padding: 8px 12px;
     border-radius: 6px;
     cursor: pointer;
+    margin-left: 8px;
     transition: transform 0.2s ease-in-out;
 }
 
 #send-btn:hover {
     transform: scale(1.1);
-}
-
-/* Botón de cerrar chat */
-#close-chat {
-    color: red;
-    font-size: 18px;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-#close-chat:hover {
-    transform: scale(1.2);
 }
