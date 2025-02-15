@@ -3,14 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portafolio</title>
+    <title>Mi Portafolio - Alejo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <h1>¡Hola, soy Alejo!</h1>
-    <p>Bienvenido a mi portafolio. Aquí encontrarás mis proyectos y contacto.</p>
-    <a href="about.html">Sobre mí</a> | 
-    <a href="projects.html">Proyectos</a> | 
-    <a href="contact.html">Contacto</a>
+<body class="relative bg-gray-900 text-white flex items-center justify-center h-screen">
+    <!-- Fondo animado -->
+    <canvas id="particles" class="absolute top-0 left-0 w-full h-full"></canvas>
+
+    <div class="relative z-10 text-center">
+        <h1 class="text-5xl font-bold mb-4 animate-fade-in">¡Hola, soy <span class="text-blue-400">Alejo</span>!</h1>
+        <p class="text-lg text-gray-300 mb-6">Desarrollador apasionado por la tecnología y la programación.</p>
+
+        <div class="space-x-4">
+            <a href="about.html" class="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-lg transition-all">Sobre mí</a>
+            <a href="projects.html" class="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-lg transition-all">Proyectos</a>
+            <a href="contact.html" class="bg-red-500 hover:bg-red-600 px-6 py-3 rounded-lg transition-all">Contacto</a>
+        </div>
+    </div>
+
+    <script src="js/particles.js"></script>
 </body>
 </html>
