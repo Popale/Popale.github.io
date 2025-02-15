@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sendBtn = document.getElementById("send-btn");
     const chatMessages = document.getElementById("chat-messages");
 
-    const API_KEY = "TU_API_KEY_AQUI"; // Reemplázalo con tu clave de Google Gemini AI
+    const API_KEY = "AIzaSyChGBqyojWq_Gm7lvNuJqAIVD0rELCQ96I";
 
     // Función para abrir/cerrar el chatbot
     chatToggle.addEventListener("click", () => {
