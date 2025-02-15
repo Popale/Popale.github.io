@@ -13,24 +13,28 @@
 
     <div class="relative z-10 text-center w-full max-w-3xl px-4">
         <h1 class="text-4xl sm:text-5xl font-bold text-blue-400 animate-fade-in">Contacto</h1>
+        
+        <!-- Mensaje explicativo -->
         <p class="text-base sm:text-lg text-gray-300 mt-4 w-full sm:w-3/4 mx-auto leading-relaxed">
-            Puedes contactarme a través de <span class="text-blue-400 font-bold">Discord</span> o <span class="text-green-400 font-bold">Telegram</span>. 
-            ¡Estoy disponible para responder tus dudas y trabajar en nuevos proyectos!
+            Para contactarme, simplemente toca uno de los botones y se copiará mi usuario.  
+            Luego, pégalo en **Discord** o **Telegram** para enviarme un mensaje.
         </p>
 
         <!-- Botones de contacto -->
         <div class="flex flex-wrap justify-center gap-4 mt-6">
             <!-- Botón de Discord que copia el usuario -->
-            <button onclick="copyDiscord()" class="bg-blue-600 hover:bg-blue-700 px-5 py-2 sm:px-6 sm:py-3 rounded-lg shadow-lg transition-all flex items-center space-x-2 transform hover:scale-105">
+            <button onclick="copyToClipboard('aleejo723', 'discord-text')" 
+                class="bg-blue-600 hover:bg-blue-700 px-5 py-2 sm:px-6 sm:py-3 rounded-lg shadow-lg transition-all flex items-center space-x-2 transform hover:scale-105">
                 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord" class="w-6 h-6"> 
                 <span id="discord-text">Discord</span>
             </button>
 
-            <!-- Botón de Telegram -->
-            <a href="https://t.me/fkfue1" target="_blank" class="bg-green-500 hover:bg-green-600 px-5 py-2 sm:px-6 sm:py-3 rounded-lg shadow-lg transition-all flex items-center space-x-2 transform hover:scale-105">
+            <!-- Botón de Telegram que copia el usuario -->
+            <button onclick="copyToClipboard('@fkfue1', 'telegram-text')" 
+                class="bg-green-500 hover:bg-green-600 px-5 py-2 sm:px-6 sm:py-3 rounded-lg shadow-lg transition-all flex items-center space-x-2 transform hover:scale-105">
                 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111644.png" alt="Telegram" class="w-6 h-6"> 
-                <span>Telegram</span>
-            </a>
+                <span id="telegram-text">Telegram</span>
+            </button>
         </div>
 
         <!-- Botón de regreso al inicio -->
@@ -41,15 +45,14 @@
 
     <script src="js/particles.js"></script>
 
-    <!-- Script para copiar el usuario de Discord -->
+    <!-- Script para copiar al portapapeles -->
     <script>
-        function copyDiscord() {
-            const discordUsername = "aleejo723"; // Usuario de Discord
-            navigator.clipboard.writeText(discordUsername).then(() => {
-                const discordText = document.getElementById("discord-text");
-                discordText.innerText = "¡Copiado!";
+        function copyToClipboard(text, elementId) {
+            navigator.clipboard.writeText(text).then(() => {
+                const buttonText = document.getElementById(elementId);
+                buttonText.innerText = "¡Copiado!";
                 setTimeout(() => {
-                    discordText.innerText = "Discord";
+                    buttonText.innerText = elementId.includes("discord") ? "Discord" : "Telegram";
                 }, 2000); // Volver al texto original después de 2 segundos
             }).catch(err => {
                 console.error("Error al copiar: ", err);
