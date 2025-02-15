@@ -13,20 +13,21 @@
 
     <div class="relative z-10 text-center w-full max-w-3xl px-4">
         <h1 class="text-4xl sm:text-5xl font-bold text-blue-400 animate-fade-in">Contacto</h1>
-        <p class="text-base sm:text-lg text-gray-300 mt-4 w-full sm:w-3/4 mx-auto">
-            Puedes contactarme a través de <span class="text-blue-400 font-bold">Discord</span> o <span class="text-green-400 font-bold">Telegram</span>. ¡Estoy disponible para responder tus dudas y trabajar en nuevos proyectos!
+        <p class="text-base sm:text-lg text-gray-300 mt-4 w-full sm:w-3/4 mx-auto leading-relaxed">
+            Puedes contactarme a través de <span class="text-blue-400 font-bold">Discord</span> o <span class="text-green-400 font-bold">Telegram</span>. 
+            ¡Estoy disponible para responder tus dudas y trabajar en nuevos proyectos!
         </p>
 
         <!-- Botones de contacto -->
         <div class="flex flex-wrap justify-center gap-4 mt-6">
-            <!-- Botón de Discord -->
-            <a href="https://discord.com/users/516120402658066432" target="_blank" class="bg-blue-600 hover:bg-blue-700 px-5 py-2 sm:px-6 sm:py-3 rounded-lg transition-all flex items-center space-x-2">
+            <!-- Botón de Discord que copia el usuario -->
+            <button onclick="copyDiscord()" class="bg-blue-600 hover:bg-blue-700 px-5 py-2 sm:px-6 sm:py-3 rounded-lg shadow-lg transition-all flex items-center space-x-2 transform hover:scale-105">
                 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord" class="w-6 h-6"> 
-                <span>Discord</span>
-            </a>
+                <span id="discord-text">Discord</span>
+            </button>
 
-            <!-- Botón de Telegram con ID de usuario -->
-            <a href="tg://user?id=7055632936" target="_blank" class="bg-green-500 hover:bg-green-600 px-5 py-2 sm:px-6 sm:py-3 rounded-lg transition-all flex items-center space-x-2">
+            <!-- Botón de Telegram -->
+            <a href="https://t.me/fkfue1" target="_blank" class="bg-green-500 hover:bg-green-600 px-5 py-2 sm:px-6 sm:py-3 rounded-lg shadow-lg transition-all flex items-center space-x-2 transform hover:scale-105">
                 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111644.png" alt="Telegram" class="w-6 h-6"> 
                 <span>Telegram</span>
             </a>
@@ -34,10 +35,26 @@
 
         <!-- Botón de regreso al inicio -->
         <div class="mt-6">
-            <a href="index.html" class="bg-blue-500 hover:bg-blue-600 px-5 py-2 sm:px-6 sm:py-3 rounded-lg transition-all">Volver al Inicio</a>
+            <a href="index.html" class="bg-blue-500 hover:bg-blue-600 px-5 py-2 sm:px-6 sm:py-3 rounded-lg shadow-lg transition-all transform hover:scale-105">Volver al Inicio</a>
         </div>
     </div>
 
     <script src="js/particles.js"></script>
+
+    <!-- Script para copiar el usuario de Discord -->
+    <script>
+        function copyDiscord() {
+            const discordUsername = "aleejo723"; // Usuario de Discord
+            navigator.clipboard.writeText(discordUsername).then(() => {
+                const discordText = document.getElementById("discord-text");
+                discordText.innerText = "¡Copiado!";
+                setTimeout(() => {
+                    discordText.innerText = "Discord";
+                }, 2000); // Volver al texto original después de 2 segundos
+            }).catch(err => {
+                console.error("Error al copiar: ", err);
+            });
+        }
+    </script>
 </body>
 </html>
