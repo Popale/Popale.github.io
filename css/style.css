@@ -46,9 +46,10 @@ p {
     animation: fadeIn 2s ease-in-out;
 }
 
-/* Botones */
+/* Botones con efectos animados */
 a {
     display: inline-block;
+    position: relative;
     background: linear-gradient(45deg, #007bff, #00bcd4);
     color: white;
     padding: 12px 24px;
@@ -56,13 +57,35 @@ a {
     border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
-    transition: transform 0.3s ease, background 0.3s ease;
+    font-size: 1.1rem;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 188, 212, 0.3);
     animation: fadeIn 2.5s ease-in-out;
 }
 
+/* Efecto de luz al pasar el mouse */
+a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 10%, transparent 70%);
+    transition: all 0.6s ease;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+a:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Efecto de escala y sombra en hover */
 a:hover {
     transform: scale(1.1);
     background: linear-gradient(45deg, #0056b3, #008cba);
+    box-shadow: 0px 6px 15px rgba(0, 188, 212, 0.5);
 }
 
 /* Animaciones */
