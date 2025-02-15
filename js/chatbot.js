@@ -6,14 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sendBtn = document.getElementById("send-btn");
     const chatMessages = document.getElementById("chat-messages");
 
-    // Respuestas predefinidas del chatbot
-    const responses = {
-        "hola": "¡Hola! ¿Cómo puedo ayudarte?",
-        "¿cómo estás?": "Soy solo un bot, pero estoy listo para ayudarte. 😊",
-        "¿qué sabes hacer?": "Puedo responder preguntas básicas sobre programación. ¡Prueba escribiendo algo!",
-        "adiós": "¡Hasta luego! 👋",
-        "default": "No entiendo esa pregunta. 🤔 Intenta preguntarme otra cosa."
-    };
+    const API_KEY = "AIzaSyChGBqyojWq_Gm7lvNuJqAIVD0rELCQ96I"; 
 
     // Función para abrir/cerrar el chatbot
     chatToggle.addEventListener("click", () => {
@@ -45,9 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
             appendMessage("bot", "Escribiendo...");
         }, 500);
 
-        setTimeout(() => {
-            chatMessages.lastChild.textContent = responses[message.toLowerCase()] || responses["default"];
-        }, 1200);
+        // Llamada a Gemini API
+        fetchResponseFromGemini(message);
     }
 
     // Función para agregar mensajes al chat
@@ -66,5 +58,28 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 100);
 
         chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll hacia el último mensaje
+    }
+
+    // Función para obtener respuesta de Gemini AI
+    async function fetchResponseFromGemini(userMessage) {
+        try {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ contents: [{ parts: [{ text: userMessage }] }] })
+            });
+
+            const data = await response.json();
+            const botReply = data.candidates?.[0]?.content?.parts?.[0]?.text || "No entendí la pregunta. 😕";
+
+            // Reemplaza el mensaje "Escribiendo..."
+            setTimeout(() => {
+                chatMessages.lastChild.textContent = botReply;
+            }, 1200);
+
+        } catch (error) {
+            console.error("Error con Gemini AI:", error);
+            chatMessages.lastChild.textContent = "Error al obtener respuesta de la IA. 😢";
+        }
     }
 });
