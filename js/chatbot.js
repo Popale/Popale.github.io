@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const sendBtn = document.getElementById("send-btn");
     const chatMessages = document.getElementById("chat-messages");
 
-    const API_KEY = "AIzaSyChGBqyojWq_Gm7lvNuJqAIVD0rELCQ96I";
+    const API_KEY = "AIzaSyChGBqyojWq_Gm7lvNuJqAIVD0rELCQ96I"; //
 
-    // Función para abrir/cerrar el chatbot
+    // Abrir/Cerrar el chatbot
     chatToggle.addEventListener("click", () => {
         chatContainer.classList.toggle("open");
     });
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         chatMessages.appendChild(typingIndicator);
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
-        // Llamar a la API de Gemini
+        // Llamar a la API de Gemini AI
         fetchResponseFromGemini(message, typingIndicator);
     }
 
@@ -54,17 +54,24 @@ document.addEventListener("DOMContentLoaded", () => {
         chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll al último mensaje
     }
 
-    // Función para obtener respuesta de Gemini AI
+    // ✅ Función para obtener respuesta de Gemini AI correctamente
     async function fetchResponseFromGemini(userMessage, typingIndicator) {
         try {
             const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ contents: [{ parts: [{ text: userMessage }] }] })
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: userMessage }] }]
+                })
             });
 
             const data = await response.json();
-            const botReply = data.candidates?.[0]?.content?.parts?.[0]?.text || "No entendí la pregunta. 😕";
+
+            // ✅ Verificamos si hay respuesta y extraemos el texto correctamente
+            let botReply = "No entendí la pregunta. 🤔";
+            if (data && data.candidates && data.candidates.length > 0) {
+                botReply = data.candidates[0].content.parts[0].text || botReply;
+            }
 
             // Eliminar "Escribiendo..." y agregar la respuesta
             setTimeout(() => {
