@@ -7,18 +7,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="relative bg-gray-900 text-white flex items-center justify-center h-screen">
+<body class="relative bg-gray-900 text-white flex items-center justify-center min-h-screen p-4">
     <!-- Fondo animado -->
     <canvas id="particles" class="absolute top-0 left-0 w-full h-full"></canvas>
 
-    <div class="relative z-10 text-center">
+    <div class="relative z-10 text-center w-full max-w-3xl px-4">
         <!-- Texto animado con fade-in y cambio de color -->
-        <h1 class="text-5xl font-bold mb-4 animate-fade-in animated-text">¡Hola, soy Alejo!</h1>
-        <p class="text-lg text-gray-300 mb-6">Desarrollador apasionado por la tecnología y la programación.</p>
+        <h1 class="text-4xl sm:text-5xl font-bold mb-4 animate-fade-in animated-text">¡Hola, soy Alejo!</h1>
+        <p class="text-base sm:text-lg text-gray-300 mb-6">Desarrollador apasionado por la tecnología y la programación.</p>
 
-        <div class="space-x-4">
-            <a href="about.html" class="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-lg transition-all">Sobre mí</a>
-            <a href="contact.html" class="bg-red-500 hover:bg-red-600 px-6 py-3 rounded-lg transition-all">Contacto</a>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="about.html" class="bg-blue-500 hover:bg-blue-600 px-5 py-2 sm:px-6 sm:py-3 rounded-lg transition-all">Sobre mí</a>
+            <a href="contact.html" class="bg-red-500 hover:bg-red-600 px-5 py-2 sm:px-6 sm:py-3 rounded-lg transition-all">Contacto</a>
         </div>
     </div>
 
