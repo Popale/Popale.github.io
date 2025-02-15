@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sendBtn = document.getElementById("send-btn");
     const chatMessages = document.getElementById("chat-messages");
 
-    const API_KEY = "AIzaSyCd05QDrsj6ldopkKBTZ6SWvyR9hSSStj8"; //
+    const API_KEY = "AIzaSyCd05QDrsj6ldopkKBTZ6SWvyR9hSSStj8";
 
     // Abrir/Cerrar el chatbot
     chatToggle.addEventListener("click", () => {
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (event.key === "Enter") sendMessage();
     });
 
-    // Función para procesar el mensaje del usuario
+    // Función para enviar mensaje
     function sendMessage() {
         const message = userInput.value.trim();
         if (message === "") return;
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         chatMessages.appendChild(typingIndicator);
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
-        // Llamar a la API de Gemini AI
+        // Llamar a la API de Gemini
         fetchResponseFromGemini(message, typingIndicator);
     }
 
@@ -50,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
         messageDiv.classList.add(sender === "user" ? "user-message" : "bot-message");
         messageDiv.textContent = text;
         chatMessages.appendChild(messageDiv);
-
         chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll al último mensaje
     }
 
@@ -66,10 +65,19 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             const data = await response.json();
+            console.log("Respuesta de Gemini:", data); // 🔹 Ver la respuesta en la consola
 
-            // ✅ Verificamos si hay respuesta y extraemos el texto correctamente
+            // ✅ Verificar si hay error en la API
+            if (data.error) {
+                console.error("Error de la API:", data.error);
+                typingIndicator.remove();
+                appendMessage("bot", "⚠ Error con la API de Gemini. Revisa tu clave.");
+                return;
+            }
+
+            // ✅ Extraer correctamente el mensaje de la IA
             let botReply = "No entendí la pregunta. 🤔";
-            if (data && data.candidates && data.candidates.length > 0) {
+            if (data && data.candidates && data.candidates[0].content && data.candidates[0].content.parts) {
                 botReply = data.candidates[0].content.parts[0].text || botReply;
             }
 
@@ -79,9 +87,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 appendMessage("bot", botReply);
             }, 1000);
         } catch (error) {
-            console.error("Error con Gemini AI:", error);
+            console.error("Error con la API de Gemini:", error);
             typingIndicator.remove();
-            appendMessage("bot", "Error al obtener respuesta de la IA. 😢");
+            appendMessage("bot", "⚠ Error de conexión con la IA.");
         }
     }
 });
