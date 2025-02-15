@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sendBtn = document.getElementById("send-btn");
     const chatMessages = document.getElementById("chat-messages");
 
-    const API_KEY = "AIzaSyChGBqyojWq_Gm7lvNuJqAIVD0rELCQ96I"; 
+    const API_KEY = "TU_API_KEY_AQUI"; // Reemplázalo con tu clave de Google Gemini AI
 
     // Función para abrir/cerrar el chatbot
     chatToggle.addEventListener("click", () => {
@@ -33,13 +33,15 @@ document.addEventListener("DOMContentLoaded", () => {
         appendMessage("user", message);
         userInput.value = "";
 
-        // Simula "Escribiendo..."
-        setTimeout(() => {
-            appendMessage("bot", "Escribiendo...");
-        }, 500);
+        // Agregar "Escribiendo..." en la parte inferior
+        const typingIndicator = document.createElement("div");
+        typingIndicator.classList.add("typing-indicator");
+        typingIndicator.textContent = "Escribiendo...";
+        chatMessages.appendChild(typingIndicator);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
 
-        // Llamada a Gemini API
-        fetchResponseFromGemini(message);
+        // Llamar a la API de Gemini
+        fetchResponseFromGemini(message, typingIndicator);
     }
 
     // Función para agregar mensajes al chat
@@ -47,21 +49,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const messageDiv = document.createElement("div");
         messageDiv.classList.add(sender === "user" ? "user-message" : "bot-message");
         messageDiv.textContent = text;
-        messageDiv.style.opacity = "0";
-        messageDiv.style.transform = "translateY(10px)";
         chatMessages.appendChild(messageDiv);
 
-        // Animación de aparición del mensaje
-        setTimeout(() => {
-            messageDiv.style.opacity = "1";
-            messageDiv.style.transform = "translateY(0)";
-        }, 100);
-
-        chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll hacia el último mensaje
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll al último mensaje
     }
 
     // Función para obtener respuesta de Gemini AI
-    async function fetchResponseFromGemini(userMessage) {
+    async function fetchResponseFromGemini(userMessage, typingIndicator) {
         try {
             const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`, {
                 method: "POST",
@@ -72,14 +66,15 @@ document.addEventListener("DOMContentLoaded", () => {
             const data = await response.json();
             const botReply = data.candidates?.[0]?.content?.parts?.[0]?.text || "No entendí la pregunta. 😕";
 
-            // Reemplaza el mensaje "Escribiendo..."
+            // Eliminar "Escribiendo..." y agregar la respuesta
             setTimeout(() => {
-                chatMessages.lastChild.textContent = botReply;
-            }, 1200);
-
+                typingIndicator.remove();
+                appendMessage("bot", botReply);
+            }, 1000);
         } catch (error) {
             console.error("Error con Gemini AI:", error);
-            chatMessages.lastChild.textContent = "Error al obtener respuesta de la IA. 😢";
+            typingIndicator.remove();
+            appendMessage("bot", "Error al obtener respuesta de la IA. 😢");
         }
     }
 });
