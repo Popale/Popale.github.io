@@ -5,7 +5,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const particlesArray = [];
-const numberOfParticles = 120; // Aumenta la cantidad para un efecto más denso
+const numberOfParticles = 120;
 
 class Particle {
     constructor() {
@@ -14,20 +14,19 @@ class Particle {
         this.size = Math.random() * 5 + 1;
         this.speedX = (Math.random() - 0.5) * 2;
         this.speedY = (Math.random() - 0.5) * 2;
-        this.opacity = Math.random() * 0.5 + 0.5; // Transparencia aleatoria
+        this.opacity = Math.random() * 0.5 + 0.5;
     }
 
     update() {
         this.x += this.speedX;
         this.y += this.speedY;
 
-        // Rebote en los bordes
         if (this.x >= canvas.width || this.x <= 0) this.speedX *= -1;
         if (this.y >= canvas.height || this.y <= 0) this.speedY *= -1;
     }
 
     draw() {
-        ctx.fillStyle = `rgba(0, 188, 212, ${this.opacity})`; // Color celeste brillante
+        ctx.fillStyle = `rgba(0, 188, 212, ${this.opacity})`;
         ctx.shadowBlur = 10;
         ctx.shadowColor = "rgba(0, 188, 212, 0.8)";
         ctx.beginPath();
@@ -37,7 +36,7 @@ class Particle {
     }
 }
 
-// Inicializa las partículas
+
 function initParticles() {
     particlesArray.length = 0;
     for (let i = 0; i < numberOfParticles; i++) {
@@ -45,7 +44,7 @@ function initParticles() {
     }
 }
 
-// Dibuja líneas entre partículas cercanas
+
 function connectParticles() {
     for (let i = 0; i < particlesArray.length; i++) {
         for (let j = i + 1; j < particlesArray.length; j++) {
@@ -53,7 +52,7 @@ function connectParticles() {
             let dy = particlesArray[i].y - particlesArray[j].y;
             let distance = Math.sqrt(dx * dx + dy * dy);
 
-            if (distance < 100) { // Conectar si están cerca
+            if (distance < 100) { 
                 ctx.strokeStyle = `rgba(0, 188, 212, ${1 - distance / 100})`;
                 ctx.lineWidth = 1;
                 ctx.beginPath();
@@ -65,7 +64,7 @@ function connectParticles() {
     }
 }
 
-// Animación de partículas
+
 function animateParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particlesArray.forEach((particle) => {
@@ -76,13 +75,12 @@ function animateParticles() {
     requestAnimationFrame(animateParticles);
 }
 
-// Manejar el redimensionamiento de la pantalla
+
 window.addEventListener("resize", function () {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     initParticles();
 });
 
-// Iniciar animación
 initParticles();
 animateParticles();
