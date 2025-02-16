@@ -8,29 +8,29 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="relative bg-gray-900 text-white flex items-center justify-center min-h-screen p-4">
-    <!-- Fondo animado -->
+
     <canvas id="particles" class="absolute top-0 left-0 w-full h-full"></canvas>
 
     <div class="relative z-10 text-center w-full max-w-3xl px-4">
         <h1 class="text-4xl sm:text-5xl font-bold text-blue-400 animate-fade-in">Contacto</h1>
         
-    <!-- Mensaje explicativo -->
+
     <p class="text-base sm:text-lg text-gray-300 mt-4 w-full sm:w-3/4 mx-auto leading-relaxed">
     Para contactarme, simplemente toca uno de los botones y se copiará mi usuario.  
     Luego, pégalo en <span class="text-blue-400 font-bold">Discord</span> o <span class="text-green-400 font-bold">Telegram</span> para enviarme un mensaje.
     </p>
 
 
-        <!-- Botones de contacto -->
+
         <div class="flex flex-wrap justify-center gap-4 mt-6">
-            <!-- Botón de Discord que copia el usuario -->
+
             <button onclick="copyToClipboard('aleejo723', 'discord-text')" 
                 class="bg-blue-600 hover:bg-blue-700 px-5 py-2 sm:px-6 sm:py-3 rounded-lg shadow-lg transition-all flex items-center space-x-2 transform hover:scale-105">
                 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord" class="w-6 h-6"> 
                 <span id="discord-text">Discord</span>
             </button>
 
-            <!-- Botón de Telegram que copia el usuario -->
+
             <button onclick="copyToClipboard('@fkfue1', 'telegram-text')" 
                 class="bg-green-500 hover:bg-green-600 px-5 py-2 sm:px-6 sm:py-3 rounded-lg shadow-lg transition-all flex items-center space-x-2 transform hover:scale-105">
                 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111644.png" alt="Telegram" class="w-6 h-6"> 
@@ -38,7 +38,7 @@
             </button>
         </div>
 
-        <!-- Botón de regreso al inicio -->
+
         <div class="mt-6">
             <a href="index.html" class="bg-blue-500 hover:bg-blue-600 px-5 py-2 sm:px-6 sm:py-3 rounded-lg shadow-lg transition-all transform hover:scale-105">Volver al Inicio</a>
         </div>
@@ -46,7 +46,7 @@
 
     <script src="js/particles.js"></script>
 
-    <!-- Script para copiar al portapapeles -->
+
     <script>
         function copyToClipboard(text, elementId) {
             navigator.clipboard.writeText(text).then(() => {
@@ -54,7 +54,7 @@
                 buttonText.innerText = "¡Copiado!";
                 setTimeout(() => {
                     buttonText.innerText = elementId.includes("discord") ? "Discord" : "Telegram";
-                }, 2000); // Volver al texto original después de 2 segundos
+                }, 2000); 
             }).catch(err => {
                 console.error("Error al copiar: ", err);
             });
