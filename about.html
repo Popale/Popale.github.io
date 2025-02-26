@@ -39,7 +39,13 @@
 
     <script type="text/babel">
         const { useState } = React;
-        const { motion } = window.FramerMotion;
+        const { motion } = window.framerMotion;
+
+        if (!motion) {
+            console.error("Framer Motion no se cargó correctamente");
+        } else {
+            console.log("Framer Motion cargado correctamente");
+        }
 
         const techStack = [
             { name: "React", icon: "⚛️", level: 100 },
@@ -83,7 +89,9 @@
         }
 
         document.addEventListener("DOMContentLoaded", function () {
-            ReactDOM.render(<TechStack />, document.getElementById("tech-stack"));
+            if (motion) {
+                ReactDOM.render(<TechStack />, document.getElementById("tech-stack"));
+            }
         });
     </script>
 </body>
