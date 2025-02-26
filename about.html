@@ -1,83 +1,52 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Mí - Alejo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="relative bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen p-6">
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tooltip } from "@/components/ui/tooltip";
+import { FaReact, FaNodeJs, FaDatabase, FaPython, FaJs, FaHtml5, FaCss3Alt } from "react-icons/fa";
 
-    <canvas id="particles" class="absolute top-0 left-0 w-full h-full"></canvas>
+const techStack = [
+  { name: "React", icon: <FaReact size={40} className="text-blue-500" />, description: "Librería de JavaScript para construir interfaces de usuario." },
+  { name: "Node.js", icon: <FaNodeJs size={40} className="text-green-600" />, description: "Entorno de ejecución de JavaScript del lado del servidor." },
+  { name: "MongoDB", icon: <FaDatabase size={40} className="text-green-500" />, description: "Base de datos NoSQL orientada a documentos." },
+  { name: "Python", icon: <FaPython size={40} className="text-yellow-500" />, description: "Lenguaje de programación versátil y fácil de aprender." },
+  { name: "JavaScript", icon: <FaJs size={40} className="text-yellow-400" />, description: "Lenguaje de programación para desarrollo web." },
+  { name: "HTML5", icon: <FaHtml5 size={40} className="text-orange-500" />, description: "Lenguaje de marcado para la estructura de las páginas web." },
+  { name: "CSS3", icon: <FaCss3Alt size={40} className="text-blue-600" />, description: "Lenguaje de estilos para el diseño y apariencia web." },
+];
 
-    <div class="relative z-10 text-center w-full max-w-2xl px-6">
-        <h1 class="text-4xl sm:text-5xl font-bold text-blue-400 animate-fade-in mb-4">Sobre Mí</h1>
-        <p class="text-lg sm:text-xl text-gray-300 mt-4 leading-relaxed max-w-xl mx-auto">
-            ¡Hola! Soy <span class="text-blue-400 font-bold">Alejo</span>, un desarrollador apasionado por la tecnología y la automatización.  
-            Me especializo en la creación de <strong class="text-blue-300">bots avanzados para Discord</strong> y <strong class="text-blue-300">chatbots inteligentes</strong>, diseñados para mejorar la gestión de comunidades y la interacción con los usuarios.  
-            <br><br>
-            Además, desarrollo <strong class="text-blue-300">páginas web dinámicas e interactivas</strong>, con <strong class="text-blue-300">paneles de administración intuitivos, sistemas de registro seguros y diseños atractivos</strong>, enfocados en la mejor experiencia de usuario.
-        </p>
+export default function TechStack() {
+  const [hoveredTech, setHoveredTech] = useState(null);
 
-        <div class="flex flex-wrap justify-center gap-4 mt-6">
-            <a href="index.html" class="bg-gradient-to-r from-blue-500 to-blue-400 hover:from-blue-600 hover:to-blue-500 px-6 py-3 rounded-lg shadow-lg transition-all transform hover:scale-105">Inicio</a>
-            <a href="contact.html" class="bg-gradient-to-r from-blue-500 to-cyan-400 hover:from-blue-600 hover:to-cyan-500 px-6 py-3 rounded-lg shadow-lg transition-all transform hover:scale-105">Contacto</a>
-        </div>
+  return (
+    <div className="py-10 bg-gray-900 text-white text-center">
+      <h2 className="text-3xl font-bold mb-6">Stack Tecnológico</h2>
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 justify-center px-6">
+        {techStack.map((tech, index) => (
+          <motion.div
+            key={index}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative"
+            onMouseEnter={() => setHoveredTech(tech.name)}
+            onMouseLeave={() => setHoveredTech(null)}
+          >
+            <Card className="p-4 bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 relative min-h-[100px]">
+              <CardContent className="flex flex-col items-center space-y-2">
+                {tech.icon}
+                <p className="text-sm font-semibold">{tech.name}</p>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={hoveredTech === tech.name ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute top-full mt-2 bg-gray-700 text-white text-xs p-2 rounded-md shadow-lg w-40 mx-auto left-1/2 transform -translate-x-1/2"
+                >
+                  {tech.description}
+                </motion.div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </div>
     </div>
-
-    <!-- Contenedor para Stack Tecnológico -->
-    <div id="tech-stack" class="relative z-10 w-full max-w-4xl mt-10"></div>
-
-    <script src="js/particles.js"></script>
-
-    <!-- React y Babel para manejar JSX sin configuración adicional -->
-    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-    <script type="text/babel">
-        const { useState } = React;
-
-        const techStack = [
-            { name: "React", icon: "⚛️", description: "Librería de JavaScript para construir interfaces de usuario." },
-            { name: "Node.js", icon: "🟢", description: "Entorno de ejecución de JavaScript del lado del servidor." },
-            { name: "MongoDB", icon: "🍃", description: "Base de datos NoSQL orientada a documentos." },
-            { name: "Python", icon: "🐍", description: "Lenguaje de programación versátil y fácil de aprender." },
-            { name: "JavaScript", icon: "⚡", description: "Lenguaje de programación para desarrollo web." },
-            { name: "HTML5", icon: "📜", description: "Lenguaje de marcado para la estructura de las páginas web." },
-            { name: "CSS3", icon: "🎨", description: "Lenguaje de estilos para el diseño y apariencia web." },
-        ];
-
-        function TechStack() {
-            const [hoveredTech, setHoveredTech] = useState(null);
-
-            return (
-                <div className="py-10 bg-gray-900 text-white text-center">
-                    <h2 className="text-3xl font-bold mb-6">Stack Tecnológico</h2>
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 justify-center px-6">
-                        {techStack.map((tech, index) => (
-                            <div
-                                key={index}
-                                className="p-4 bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105"
-                                onMouseEnter={() => setHoveredTech(tech.name)}
-                                onMouseLeave={() => setHoveredTech(null)}
-                            >
-                                <div className="flex flex-col items-center space-y-2">
-                                    <span className="text-4xl">{tech.icon}</span>
-                                    <p className="text-sm font-semibold">{tech.name}</p>
-                                    {hoveredTech === tech.name && (
-                                        <p className="text-xs text-gray-300 mt-2">{tech.description}</p>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            );
-        }
-
-        ReactDOM.render(<TechStack />, document.getElementById("tech-stack"));
-    </script>
-</body>
-</html>
+  );
+}
