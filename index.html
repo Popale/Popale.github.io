@@ -22,11 +22,10 @@
         </div>
     </div>
 
-
+    <!-- Botón para el chatbot -->
     <button id="chat-toggle" class="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg">
         💬
     </button>
-
 
     <div id="chat-container" class="fixed bottom-16 right-6 w-80 bg-gray-800 p-4 rounded-lg shadow-lg transform translate-x-full transition-transform">
         <div class="flex justify-between items-center">
@@ -37,14 +36,43 @@
             <div class="bot-message bg-blue-500 text-white p-2 rounded-lg mb-2 w-fit max-w-xs">¡Hola! Soy un chatbot. Pregúntame algo.</div>
         </div>
 
-
         <div class="mt-4 flex">
             <input type="text" id="user-input" class="flex-1 p-2 rounded-lg bg-gray-600 text-white" placeholder="Escribe tu mensaje...">
             <button id="send-btn" class="bg-blue-500 px-4 py-2 ml-2 rounded-lg">Enviar</button>
         </div>
     </div>
 
+    <!-- Reproductor de música -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.youtube.com/watch?v=Sa5hRs3VfS0" type="audio/mpeg">
+        Tu navegador no soporta audio HTML5.
+    </audio>
+
+    <!-- Botón para controlar la música -->
+    <button id="playMusic" class="fixed bottom-6 left-6 bg-green-500 text-white p-3 rounded-full shadow-lg">
+        🎵 Reproducir Música
+    </button>
+
     <script src="js/particles.js"></script>
     <script src="js/chatbot.js"></script>
+
+    <script>
+        // Control de música de fondo
+        const music = document.getElementById("bgMusic");
+        const playButton = document.getElementById("playMusic");
+
+        playButton.addEventListener("click", () => {
+            if (music.paused) {
+                music.play();
+                playButton.textContent = "⏸️ Pausar Música";
+                playButton.classList.replace("bg-green-500", "bg-red-500");
+            } else {
+                music.pause();
+                playButton.textContent = "🎵 Reproducir Música";
+                playButton.classList.replace("bg-red-500", "bg-green-500");
+            }
+        });
+    </script>
+
 </body>
 </html>
