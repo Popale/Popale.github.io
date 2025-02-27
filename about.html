@@ -36,47 +36,55 @@
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <script type="text/babel">
-        const { useState } = React;
+<script type="text/babel">
+    const { useState } = React;
 
-        const techStack = [
-            { name: "React", icon: "⚛️", level: 100 },
-            { name: "Node.js", icon: "🟢", level: 100 },
-            { name: "MongoDB", icon: "🍃", level: 100 },
-            { name: "Python", icon: "🐍", level: 100 },
-            { name: "JavaScript", icon: "⚡", level: 100 },
-            { name: "HTML5", icon: "📜", level: 100 },
-            { name: "CSS3", icon: "🎨", level: 100 },
-        ];
+    const techStack = [
+        { name: "React", icon: "⚛️", level: 100 },
+        { name: "Node.js", icon: "🟢", level: 100 },
+        { name: "MongoDB", icon: "🍃", level: 100 },
+        { name: "Python", icon: "🐍", level: 100 },
+        { name: "JavaScript", icon: "⚡", level: 100 },
+        { name: "HTML5", icon: "📜", level: 100 },
+        { name: "CSS3", icon: "🎨", level: 100 },
+    ];
 
-        function TechStack() {
-            return (
-                <div className="py-10 bg-gray-900 text-white text-center">
-                    <h2 className="text-3xl font-bold mb-6">Stack Tecnológico</h2>
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 justify-center px-6">
-                        {techStack.map((tech, index) => (
-                            <div 
-                                key={index} 
-                                className="relative p-4 bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 flex flex-col items-center space-y-2"
-                            >
-                                <span className="text-4xl">{tech.icon}</span>
-                                <p className="text-sm font-semibold">{tech.name}</p>
-                                <div className="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
-                                    <div 
-                                        className="bg-blue-500 h-full transition-all duration-[1.5s]" 
-                                        style={{ width: `${tech.level}%` }}
-                                    ></div>
-                                </div>
+    function TechStack() {
+        return (
+            <div className="py-10 bg-gray-900 text-white text-center">
+                <h2 className="text-3xl font-bold mb-6">Stack Tecnológico</h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 justify-center px-6">
+                    {techStack.map((tech, index) => (
+                        <div 
+                            key={index} 
+                            className="relative p-4 bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 flex flex-col items-center space-y-2"
+                        >
+                            <span className="text-4xl">{tech.icon}</span>
+                            <p className="text-sm font-semibold">{tech.name}</p>
+                            <div className="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
+                                <div 
+                                    className="bg-blue-500 h-full transition-all duration-[1.5s]" 
+                                    style={{ width: `${tech.level}%` }}
+                                ></div>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
-            );
-        }
+            </div>
+        );
+    }
 
-        document.addEventListener("DOMContentLoaded", function () {
-            ReactDOM.render(<TechStack />, document.getElementById("tech-stack"));
-        });
-    </script>
+    // Esperar a que el DOM esté completamente cargado
+    setTimeout(() => {
+        const container = document.getElementById("tech-stack");
+        if (container) {
+            ReactDOM.render(<TechStack />, container);
+            console.log("Stack Tecnológico cargado correctamente");
+        } else {
+            console.error("No se encontró el contenedor #tech-stack");
+        }
+    }, 1000);
+</script>
+
 </body>
 </html>
