@@ -12,7 +12,6 @@
     <canvas id="particles" class="absolute top-0 left-0 w-full h-full"></canvas>
 
     <div class="relative z-10 text-center w-full max-w-3xl px-4">
-
         <h1 class="text-4xl sm:text-5xl font-bold mb-4 animate-fade-in animated-text">¡Hola, soy Alejo!</h1>
         <p class="text-base sm:text-lg text-gray-300 mb-6">Desarrollador apasionado por la tecnología y la programación.</p>
 
@@ -42,11 +41,8 @@
         </div>
     </div>
 
-    <!-- Reproductor de música -->
-    <audio id="bgMusic" loop>
-        <source src="https://www.youtube.com/watch?v=Sa5hRs3VfS0" type="audio/mpeg">
-        Tu navegador no soporta audio HTML5.
-    </audio>
+    <!-- Reproductor de YouTube oculto -->
+    <iframe id="youtubePlayer" width="0" height="0" src="" frameborder="0" allow="autoplay"></iframe>
 
     <!-- Botón para controlar la música -->
     <button id="playMusic" class="fixed bottom-6 left-6 bg-green-500 text-white p-3 rounded-full shadow-lg">
@@ -57,19 +53,21 @@
     <script src="js/chatbot.js"></script>
 
     <script>
-        // Control de música de fondo
-        const music = document.getElementById("bgMusic");
+        let isPlaying = false;
+        const youtubePlayer = document.getElementById("youtubePlayer");
         const playButton = document.getElementById("playMusic");
 
         playButton.addEventListener("click", () => {
-            if (music.paused) {
-                music.play();
+            if (!isPlaying) {
+                youtubePlayer.src = "https://www.youtube.com/embed/Sa5hRs3VfS0?autoplay=1&loop=1&playlist=Sa5hRs3VfS0";
                 playButton.textContent = "⏸️ Pausar Música";
                 playButton.classList.replace("bg-green-500", "bg-red-500");
+                isPlaying = true;
             } else {
-                music.pause();
+                youtubePlayer.src = "";
                 playButton.textContent = "🎵 Reproducir Música";
                 playButton.classList.replace("bg-red-500", "bg-green-500");
+                isPlaying = false;
             }
         });
     </script>
