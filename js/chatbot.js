@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sendBtn = document.getElementById("send-btn");
     const chatMessages = document.getElementById("chat-messages");
 
-    const API_KEY = "AIzaSyCd05QDrsj6ldopkKBTZ6SWvyR9hSSStj8";
+    const API_KEY = "AIzaSyBEWH_bGqUOcJm7JTLNmFUNutpPWETAbj0";
     
 
     chatToggle.addEventListener("click", () => {
