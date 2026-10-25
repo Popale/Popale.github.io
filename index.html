@@ -1,76 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portafolio - Alejo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="relative bg-gray-900 text-white flex items-center justify-center min-h-screen p-4">
-
-    <canvas id="particles" class="absolute top-0 left-0 w-full h-full"></canvas>
-
-    <div class="relative z-10 text-center w-full max-w-3xl px-4">
-        <h1 class="text-4xl sm:text-5xl font-bold mb-4 animate-fade-in animated-text">¡Hola, soy Alejo!</h1>
-        <p class="text-base sm:text-lg text-gray-300 mb-6">Desarrollador apasionado por la tecnología y la programación.</p>
-
-        <div class="flex flex-wrap justify-center gap-4">
-            <a href="about.html" class="bg-blue-500 hover:bg-blue-600 px-5 py-2 sm:px-6 sm:py-3 rounded-lg transition-all">Sobre mí</a>
-            <a href="contact.html" class="bg-red-500 hover:bg-red-600 px-5 py-2 sm:px-6 sm:py-3 rounded-lg transition-all">Contacto</a>
-        </div>
-    </div>
-
-    <!-- Botón para el chatbot -->
-    <button id="chat-toggle" class="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg">
-        💬
-    </button>
-
-    <div id="chat-container" class="fixed bottom-16 right-6 w-80 bg-gray-800 p-4 rounded-lg shadow-lg transform translate-x-full transition-transform">
-        <div class="flex justify-between items-center">
-            <h2 class="text-lg font-bold text-blue-400">🤖 Chatbot</h2>
-            <button id="close-chat" class="text-red-400 hover:text-red-500">✖</button>
-        </div>
-        <div id="chat-messages" class="h-64 overflow-y-auto bg-gray-700 p-3 rounded-lg mt-2">
-            <div class="bot-message bg-blue-500 text-white p-2 rounded-lg mb-2 w-fit max-w-xs">¡Hola! Soy un chatbot. Pregúntame algo.</div>
-        </div>
-
-        <div class="mt-4 flex">
-            <input type="text" id="user-input" class="flex-1 p-2 rounded-lg bg-gray-600 text-white" placeholder="Escribe tu mensaje...">
-            <button id="send-btn" class="bg-blue-500 px-4 py-2 ml-2 rounded-lg">Enviar</button>
-        </div>
-    </div>
-
-    <!-- Reproductor de YouTube oculto -->
-    <iframe id="youtubePlayer" width="0" height="0" src="" frameborder="0" allow="autoplay"></iframe>
-
-    <!-- Botón para controlar la música -->
-    <button id="playMusic" class="fixed bottom-6 left-6 bg-green-500 text-white p-3 rounded-full shadow-lg">
-        🎵 Reproducir Música
-    </button>
-
-    <script src="js/particles.js"></script>
-    <script src="js/chatbot.js"></script>
-
-    <script>
-        let isPlaying = false;
-        const youtubePlayer = document.getElementById("youtubePlayer");
-        const playButton = document.getElementById("playMusic");
-
-        playButton.addEventListener("click", () => {
-            if (!isPlaying) {
-                youtubePlayer.src = "https://www.youtube.com/embed/Sa5hRs3VfS0?autoplay=1&loop=1&playlist=Sa5hRs3VfS0";
-                playButton.textContent = "⏸️ Pausar Música";
-                playButton.classList.replace("bg-green-500", "bg-red-500");
-                isPlaying = true;
-            } else {
-                youtubePlayer.src = "";
-                playButton.textContent = "🎵 Reproducir Música";
-                playButton.classList.replace("bg-red-500", "bg-green-500");
-                isPlaying = false;
-            }
-        });
-    </script>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alejo | Full-Stack & Discord Bot Architect</title>
+    <meta name="description" content="Portafolio oficial de Alejo (Popale). Especialista en bots de Discord interactivos, automatización y desarrollo web moderno full-stack." />
+    <meta name="theme-color" content="#0b0f19" />
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
