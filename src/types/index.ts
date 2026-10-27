@@ -1,4 +1,4 @@
-export type ProjectCategory = 'all' | 'bots' | 'web' | 'automation';
+export type ProjectCategory = 'all' | 'bots' | 'web' | 'automation' | 'desktop';
 
 export interface ProjectArchitectureDetail {
   readonly title: string;
@@ -10,7 +10,7 @@ export interface Project {
   readonly title: string;
   readonly description: string;
   readonly detailedOverview: string;
-  readonly category: 'bots' | 'web' | 'automation';
+  readonly category: 'bots' | 'web' | 'automation' | 'desktop';
   readonly tags: readonly string[];
   readonly featured: boolean;
   readonly githubUrl: string;

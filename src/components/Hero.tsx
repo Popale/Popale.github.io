@@ -28,7 +28,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenSimulator }) => {
             boxShadow: '0 0 20px rgba(88, 101, 242, 0.2)'
           }}>
             <Sparkles size={16} color="#00f0ff" />
-            <span>Arquitectura de Bots Discord & Desarrollo Full-Stack Moderno</span>
+            <span>Software de Escritorio, Bots para Discord & Full-Stack Moderno</span>
           </div>
         </div>
 
@@ -47,8 +47,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenSimulator }) => {
             marginInline: 'auto'
           }}>
             Hola, soy <strong style={{ color: '#ffffff', fontWeight: 700 }}>{PERSONAL_INFO.name} ({PERSONAL_INFO.alias})</strong>.
-            Especializado en la creación de <span style={{ color: '#818cf8', fontWeight: 600 }}>bots para Discord</span>, 
-            motores de automatización con IA y plataformas web completas con arquitecturas modulares, limpias y altamente performantes.
+            Especializado en software de escritorio con <span style={{ color: '#00f0ff', fontWeight: 600 }}>Electron & FFmpeg</span>, 
+            creación de <span style={{ color: '#818cf8', fontWeight: 600 }}>bots para Discord</span>, 
+            motores de automatización audiovisual con IA y plataformas web completas con arquitecturas modulares, limpias y altamente performantes.
           </p>
 
           {/* CTAs */}
@@ -87,7 +88,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenSimulator }) => {
             <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>
               Especialidades clave:
             </span>
-            {['Discord.js v14', 'TypeScript', 'Node.js', 'FFmpeg & Video AI', 'MongoDB Transaccional', 'React 19 & Vue 3'].map((tech) => (
+            {['Electron Desktop', 'Discord.js v14', 'TypeScript', 'Node.js', 'FFmpeg & Video AI', 'MongoDB Transaccional', 'React 19 & Vue 3'].map((tech) => (
               <span
                 key={tech}
                 style={{

@@ -18,9 +18,10 @@ if (fs.existsSync(distIndex)) {
 
 // 2. Copy dist/assets to root assets/
 if (fs.existsSync(assetsDist)) {
-  if (!fs.existsSync(assetsRoot)) {
-    fs.mkdirSync(assetsRoot, { recursive: true });
+  if (fs.existsSync(assetsRoot)) {
+    fs.rmSync(assetsRoot, { recursive: true, force: true });
   }
+  fs.mkdirSync(assetsRoot, { recursive: true });
   const files = fs.readdirSync(assetsDist);
   for (const file of files) {
     fs.copyFileSync(path.resolve(assetsDist, file), path.resolve(assetsRoot, file));

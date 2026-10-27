@@ -3,8 +3,8 @@ import type { Project, TechItem, BotCommand, DiscordMessage } from '../types';
 export const PERSONAL_INFO = {
   name: 'Alejo',
   alias: 'Popale',
-  role: 'Full-Stack Developer & Discord Bot Architect',
-  bio: 'Especialista en desarrollo de bots avanzados para Discord, automatización con Inteligencia Artificial y aplicaciones web full-stack seguras, modulares y de alto rendimiento.',
+  role: 'Full-Stack Developer, Desktop Software & Discord Bot Architect',
+  bio: 'Especialista en software de escritorio con Electron, bots avanzados para Discord, automatización audiovisual con Inteligencia Artificial y aplicaciones web full-stack seguras, modulares y de alto rendimiento.',
   status: 'Disponible para proyectos y colaboraciones',
   location: 'Argentina',
   contact: {
@@ -14,7 +14,7 @@ export const PERSONAL_INFO = {
     github: 'https://github.com/Popale',
   },
   metrics: [
-    { label: 'Proyectos & Bots Desarrollados', value: '+10' },
+    { label: 'Proyectos & Bots Desarrollados', value: '+12' },
     { label: 'Usuarios & Miembros Servidos', value: '+50K' },
     { label: 'Uptime Promedio en Producción', value: '99.9%' },
     { label: 'Años de Experiencia Activa', value: '+3' },
@@ -22,6 +22,16 @@ export const PERSONAL_INFO = {
 } as const;
 
 export const TECH_STACK: readonly TechItem[] = [
+  // Desktop & Systems
+  {
+    name: 'Electron & Desktop',
+    category: 'tools',
+    icon: '🖥️',
+    level: 93,
+    description: 'Software de escritorio nativo para Windows, arquitectura modular desacoplada, ContextBridge seguro y aceleración por hardware.',
+    color: '#47848f',
+    experienceYears: '2+ años',
+  },
   // Backend & Automation
   {
     name: 'TypeScript',
@@ -107,6 +117,31 @@ export const TECH_STACK: readonly TechItem[] = [
 ] as const;
 
 export const PROJECTS: readonly Project[] = [
+  {
+    id: 'popeditor',
+    title: 'Popeditor - Desktop Video Editor for PC',
+    category: 'desktop',
+    description: 'Software de escritorio profesional para edición de video multipista en Windows con motor de exportación nativo en tiempo real mediante FFmpeg integrado.',
+    detailedOverview: 'Editor de video no lineal (NLE) de alto rendimiento para Windows desarrollado con Electron, Vite, React 18 y TypeScript. Diseñado para creadores de contenido con selector de relaciones de aspecto (16:9 para YouTube, 9:16 para TikTok/Shorts, 1:1 para Instagram), línea de tiempo multipista interactiva (pistas de video, B-roll, audio y títulos), herramienta de corte (tecla S), recorte con trim handles y snapping magnético. Integra un motor nativo de composición y renderizado con FFmpeg que ejecuta filtergraphs dinámicos, mezcla de audio con adelay y títulos con drawtext sin requerir dependencias externas.',
+    tags: ['Electron', 'React 18', 'TypeScript', 'FFmpeg', 'Vite', 'Audio/Video NLE', 'SMPTE Timecode'],
+    featured: true,
+    githubUrl: 'https://github.com/Popale/Popeditor',
+    highlights: [
+      'Línea de tiempo multipista interactiva con corte ("S"), trim dinámico y snapping magnético',
+      'Previsualización en tiempo real con selector 16:9 (YouTube), 9:16 (TikTok) y 1:1 (Instagram)',
+      'Motor de exportación nativo a MP4 (H.264/AAC) con FFmpeg integrado y barra de progreso real',
+      'Timecode SMPTE de alta precisión (00:00:00:00) y navegación cuadro a cuadro (60 FPS)',
+      'Gestión de proyectos en formato nativo .popeditor con historial Undo/Redo completo',
+    ],
+    architectureDetails: [
+      { title: 'Core & IPC Bridge', description: 'Separación estricta Main/Renderer mediante ContextBridge seguro con tipado exhaustivo.' },
+      { title: 'Timeline & Engine', description: 'Manipulación matemática temporal de clips, snapping magnético y timecode SMPTE.' },
+      { title: 'FFmpeg Exporter', description: 'Generación procedural de FilterGraph complejo, escalado y renderizado multiproceso.' },
+    ],
+    iconName: 'Clapperboard',
+    badgeText: 'Software de Escritorio',
+    metrics: '60 FPS & 1080p Nativo',
+  },
   {
     id: 'popitor',
     title: 'Popitor - AI Video Automation Engine',
@@ -252,6 +287,7 @@ export const BOT_COMMANDS: readonly BotCommand[] = [
           color: '#5865f2',
           fields: [
             { name: '💼 /projects', value: 'Muestra todos los proyectos desarrollados por Alejo.', inline: true },
+            { name: '🖥️ /popeditor', value: 'Editor de video para PC Popeditor (Desktop/FFmpeg).', inline: true },
             { name: '🎬 /popitor', value: 'Detalles del motor de video con IA Popitor.', inline: true },
             { name: '🚔 /malosaires', value: 'Bot de Discord y plataforma FiveM Malos Aires.', inline: true },
             { name: '🎰 /popsino', value: 'Bot de casino y economía atómica Popsino.', inline: true },
@@ -286,23 +322,59 @@ export const BOT_COMMANDS: readonly BotCommand[] = [
           color: '#00f0ff',
           fields: [
             {
-              name: '🎬 1. Popitor (AI Video Automation)',
+              name: '🖥️ 1. Popeditor (Desktop Video Editor)',
+              value: 'Editor de video profesional para Windows en Electron, React 18 y FFmpeg nativo con línea de tiempo multipista y presets para YouTube/TikTok.\n*Comando directo: `/popeditor`*',
+            },
+            {
+              name: '🎬 2. Popitor (AI Video Automation)',
               value: 'Motor modular en TypeScript para crear videos automáticos (TikTok/YouTube) usando LLMs, Edge-TTS y renderizado Ken Burns en FFmpeg.\n*Comando directo: `/popitor`*',
             },
             {
-              name: '🚔 2. Bot Malos Aires (FiveM Community)',
+              name: '🚔 3. Bot Malos Aires (FiveM Community)',
               value: 'Bot integral con sistema de tickets interactivos, logs de moderación en MongoDB y reproductor musical DisTube.\n*Comando directo: `/malosaires`*',
             },
             {
-              name: '🌐 3. Malos Aires Web Platform',
+              name: '🌐 4. Malos Aires Web Platform',
               value: 'Dashboard full-stack desarrollado en Vue 3 y API REST Express protegida con JWT en cookies HttpOnly y Zod.',
             },
             {
-              name: '🎰 4. Popsino (Casino & Economy)',
+              name: '🎰 5. Popsino (Casino & Economy)',
               value: 'Bot de economía comunitaria para Discord con transacciones atómicas seguras en MongoDB y juegos de casino.\n*Comando directo: `/popsino`*',
             },
           ],
           footer: 'Tip: Hacé click en cualquier tarjeta de la sección "Proyectos" para ver más detalles.',
+        },
+      ],
+    }),
+  },
+  {
+    name: '/popeditor',
+    description: 'Información técnica detallada sobre Popeditor (Desktop Video Editor).',
+    usage: '/popeditor',
+    category: 'Proyectos',
+    execute: (): DiscordMessage => ({
+      id: `msg-${Date.now()}`,
+      author: {
+        name: 'Popale Core #0001',
+        avatar: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&h=100&fit=crop&crop=faces',
+        isBot: true,
+        botTag: 'BOT',
+      },
+      timestamp: 'Hoy a las ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      embeds: [
+        {
+          title: '🖥️ Popeditor • Desktop Video Editor for PC',
+          description: 'Software de escritorio para edición de video en **Windows** desarrollado con **Electron + Vite + React 18 + TypeScript** y motor de exportación nativo **FFmpeg**.',
+          color: '#00f0ff',
+          fields: [
+            { name: '🎞️ Timeline', value: 'Multipista (Video, B-Roll, Audio, Títulos) con corte ("S") y snapping magnético', inline: true },
+            { name: '📐 Relaciones de Aspecto', value: '16:9 (YouTube), 9:16 (TikTok/Shorts), 1:1 (Instagram)', inline: true },
+            { name: '⚡ Motor de Render', value: 'FFmpeg integrado con FilterGraph, H.264/AAC y telemetría de progreso', inline: true },
+            { name: '⏱ Precisión', value: 'Timecode SMPTE (00:00:00:00) y navegación cuadro a cuadro a 60 FPS', inline: true },
+            { name: '💾 Proyectos', value: 'Formato nativo .popeditor con historial Undo (Ctrl+Z) / Redo (Ctrl+Y)', inline: true },
+            { name: '📦 Repositorio', value: '[github.com/Popale/Popeditor](https://github.com/Popale/Popeditor)', inline: true },
+          ],
+          footer: 'Popeditor • Edición de Video Profesional para Creadores de Contenido',
         },
       ],
     }),

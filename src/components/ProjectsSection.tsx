@@ -11,7 +11,8 @@ import {
   Terminal, 
   Sparkles,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Clapperboard
 } from 'lucide-react';
 import { GithubIcon } from './icons/GithubIcon';
 import { PROJECTS } from '../data/portfolioData';
@@ -19,8 +20,9 @@ import type { Project, ProjectCategory } from '../types';
 
 const CATEGORY_TABS: readonly { id: ProjectCategory; label: string }[] = [
   { id: 'all', label: 'Todos los Proyectos' },
-  { id: 'bots', label: 'Discord Bots' },
+  { id: 'desktop', label: 'Software de Escritorio' },
   { id: 'automation', label: 'IA & Automatización' },
+  { id: 'bots', label: 'Discord Bots' },
   { id: 'web', label: 'Full-Stack Web' },
 ];
 
@@ -34,6 +36,8 @@ export const ProjectsSection: React.FC = () => {
 
   const getProjectIcon = (iconName: string) => {
     switch (iconName) {
+      case 'Clapperboard':
+        return <Clapperboard size={22} color="#00f0ff" />;
       case 'Video':
         return <Video size={22} color="#f43f5e" />;
       case 'Bot':

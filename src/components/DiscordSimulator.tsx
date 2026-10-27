@@ -14,7 +14,8 @@ import {
   Bot as BotIcon,
   Coins,
   Activity,
-  Mail
+  Mail,
+  Clapperboard
 } from 'lucide-react';
 import { BOT_COMMANDS, PERSONAL_INFO } from '../data/portfolioData';
 import type { DiscordMessage } from '../types';
@@ -48,7 +49,7 @@ const INITIAL_MESSAGES: MessageEntry[] = [
           description: `¡Hola! Soy la instancia interactiva de **${PERSONAL_INFO.name} (${PERSONAL_INFO.alias})**.\nEscribí un comando que comience con \`/\` o seleccioná los botones de acceso rápido debajo para explorar proyectos, arquitectura y vías de contacto.`,
           color: '#5865f2',
           fields: [
-            { name: '✨ Proyectos Reales', value: '`/projects` o comandos dedicados: `/popitor`, `/malosaires`, `/popsino`', inline: false },
+            { name: '✨ Proyectos Reales', value: '`/projects` o comandos dedicados: `/popeditor`, `/popitor`, `/malosaires`, `/popsino`', inline: false },
             { name: '⚡ Telemetría', value: 'Probá `/status` para chequear el rendimiento del cluster.', inline: true },
             { name: '📬 Vías de Contacto', value: 'Probá `/contact` para obtener Discord & Telegram.', inline: true },
           ],
@@ -201,6 +202,7 @@ export const DiscordSimulator: React.FC = () => {
           {[
             { cmd: '/help', label: 'Comandos', icon: HelpCircle },
             { cmd: '/projects', label: 'Todos los Proyectos', icon: FolderGit2 },
+            { cmd: '/popeditor', label: 'Popeditor (Desktop)', icon: Clapperboard },
             { cmd: '/popitor', label: 'Popitor (Video AI)', icon: Video },
             { cmd: '/malosaires', label: 'Bot Malos Aires', icon: BotIcon },
             { cmd: '/popsino', label: 'Popsino (Casino)', icon: Coins },
